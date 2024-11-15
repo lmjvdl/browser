@@ -20,7 +20,7 @@ const Browser: React.FC = () => {
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       {data.map((item, index) => (
         <div key={index} className="bg-black shadow-md rounded-lg p-6">
-          <h3 className="text-2xl font-semibold text-blue-600 mb-2">
+          <h3 className="text-2xl font-semibold text-[#F1DEDE] mb-2">
             {item.title}
           </h3>
           <p className="text-gray-700">{item.content}</p>
