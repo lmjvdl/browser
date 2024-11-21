@@ -1,15 +1,21 @@
-// frontend/src/components/SearchBar.tsx
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Header: React.FC = () => {
   const [dateState, setDateState] = useState(new Date());
-  const t = new Date();
-  const c = t.getHours() - 12;
+  const navigate = useNavigate();
+
   useEffect(() => {
-    setInterval(() => {
+    const interval = setInterval(() => {
       setDateState(new Date());
     }, 1000);
+
+    return () => clearInterval(interval);
   }, []);
+
+  const handleNavigate = () => {
+    navigate("/login");
+  };
 
   return (
     <div className="flex flex-row bg-gray-800 w-full p-3">
@@ -19,11 +25,13 @@ const Header: React.FC = () => {
             className="absolute w-16 h-16 text-gray-900 -left-1"
             fill="currentColor"
             viewBox="0 0 18 24"
-            xmlns="http://www.w3.org/2000/svg">
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <path
-              fill-rule="evenodd"
+              fillRule="evenodd"
               d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-              clip-rule="evenodd"></path>
+              clipRule="evenodd"
+            ></path>
           </svg>
         </div>
       </div>
@@ -39,14 +47,11 @@ const Header: React.FC = () => {
       </div>
       <div className="flex-2 pointer-events-auto justify-center items-center pr-3 pt-3">
         <button
-          type="submit"
-          className="text-white end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-          Register
-        </button>
-        <button
-          type="submit"
-          className="text-white end-2.5 ml-2 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-          Login
+          type="button"
+          onClick={handleNavigate} // Handle button click
+          className="text-white end-2.5 ml-2 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
+          Sign up / Sign in
         </button>
       </div>
     </div>

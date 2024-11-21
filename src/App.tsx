@@ -1,8 +1,25 @@
 // frontend/src/App.tsx
-import HomePage from './pages/HomePage';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import Index from "./pages/LoginAndRegister/index";
 
-function App() {
-  return <HomePage />;
-}
+const App: React.FC = () => {
+  const handleLoginSubmit = () => {
+    console.log("Login or signup submitted");
+  };
+
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route
+          path="/login"
+          element={<Index />}
+        />
+      </Routes>
+    </Router>
+  );
+};
 
 export default App;
