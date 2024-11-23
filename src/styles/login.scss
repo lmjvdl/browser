@@ -1,6 +1,11 @@
 .index {
   font-family: sans-serif;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
 }
 
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
@@ -25,10 +30,6 @@
   margin: 0;
 }
 
-h2 {
-  text-align: center;
-}
-
 p {
   font-size: 14px;
   font-weight: 100;
@@ -49,9 +50,9 @@ span {
 }
 
 .button-signup {
-  border-radius: 20px;
-  border: 1px solid #ff4b2b;
-  background-color: #ff4b2b;
+  border-radius: 13px;
+  border: 1px solid #1d4ed8;
+  background-color: #1d4ed8;
   color: #ffffff;
   font-size: 12px;
   font-weight: bold;
@@ -171,9 +172,9 @@ span {
 }
 
 .overlay {
-  background: #ff416c;
-  background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
-  background: linear-gradient(to right, #ff4b2b, #ff416c);
+  background: #000000;
+  background: -webkit-linear-gradient(to right, #000000, #000000);
+  background: linear-gradient(to right, #64748b, #131d1f);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;
@@ -254,7 +255,7 @@ footer p {
 }
 
 footer i {
-  color: red;
+  color: #1d4ed8;
 }
 
 footer a {

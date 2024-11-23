@@ -2,16 +2,18 @@ import React, { useState, ChangeEvent, FormEvent } from "react";
 import "../../../styles/login.scss"
 
 interface SignUpState {
-  name: string;
+  username: string;
   email: string;
   password: string;
+  repeatPassword: string;
 }
 
 const SignUpForm: React.FC = () => {
   const [state, setState] = useState<SignUpState>({
-    name: "",
+    username: "",
     email: "",
     password: "",
+    repeatPassword: "",
   });
 
   const handleChange = (evt: ChangeEvent<HTMLInputElement>) => {
@@ -22,20 +24,20 @@ const SignUpForm: React.FC = () => {
     }));
   };
 
-  // تابع ارسال فرم
   const handleOnSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    const { name, email, password } = state;
+    const { username, email, password } = state;
 
     alert(
-      `You are signing up with name: ${name}, email: ${email}, and password: ${password}`
+      `You are signing up with name: ${username}, email: ${email}, and password: ${password}`
     );
 
 
     setState({
-      name: "",
+      username: "",
       email: "",
       password: "",
+      repeatPassword: ""
     });
   };
 
@@ -46,11 +48,11 @@ const SignUpForm: React.FC = () => {
         <span>or use your email for registration</span>
         <input
           type="text"
-          name="name"
+          name="username"
           className="input-signup"
-          value={state.name}
+          value={state.username}
           onChange={handleChange}
-          placeholder="Name"
+          placeholder="Username"
         />
         <input
           type="email"
@@ -67,6 +69,14 @@ const SignUpForm: React.FC = () => {
           value={state.password}
           onChange={handleChange}
           placeholder="Password"
+        />
+        <input
+          type="password"
+          name="repeat-password"
+          className="input-signup"
+          value={state.repeatPassword}
+          onChange={handleChange}
+          placeholder="Repeat password"
         />
         <button type="submit" className="button-signup">Sign Up</button>
       </form>
