@@ -6,7 +6,7 @@ import SignUpForm from "./signUp/SignUp";
 
 const Index: React.FC = () => {
   const [type, setType] = useState<"signIn" | "signUp">("signIn");
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleOnClick = (text: "signIn" | "signUp") => {
     if (text !== type) {
@@ -21,17 +21,15 @@ const Index: React.FC = () => {
     <>
       <div className="index bg-slate-400 w-full h-full">
         <div
-          className="back-button absolute top-4 left-4 cursor-pointer text-gray-700"
-          onClick={() => navigate(-1)}
-        >
+          className="back-button absolute top-4 left-4 cursor-pointer bg-gray-300 rounded-xl"
+          onClick={() => navigate(-1)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={4}
             stroke="currentColor"
-            className="w-8 h-8"
-          >
+            className="w-12 h-12">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -53,8 +51,7 @@ const Index: React.FC = () => {
                 <button
                   className="ghost button-signup"
                   id="signIn"
-                  onClick={() => handleOnClick("signIn")}
-                >
+                  onClick={() => handleOnClick("signIn")}>
                   Sign In
                 </button>
               </div>
@@ -64,8 +61,7 @@ const Index: React.FC = () => {
                 <button
                   className="ghost button-signup"
                   id="signUp"
-                  onClick={() => handleOnClick("signUp")}
-                >
+                  onClick={() => handleOnClick("signUp")}>
                   Sign Up
                 </button>
               </div>

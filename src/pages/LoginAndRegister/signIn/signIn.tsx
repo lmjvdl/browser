@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
-import "../../../styles/login.scss"
+import "../../../styles/login.scss";
 // تعریف نوع داده برای وضعیت (state)
 interface SignInState {
   email: string;
@@ -26,7 +26,6 @@ const SignInForm: React.FC = () => {
 
     alert(`You are logging in with email: ${email} and password: ${password}`);
 
-    
     setState({
       email: "",
       password: "",
@@ -41,7 +40,7 @@ const SignInForm: React.FC = () => {
         <input
           type="email"
           name="email"
-          className="input-signup"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-2 mb-2"
           placeholder="Email"
           value={state.email}
           onChange={handleChange}
@@ -49,14 +48,18 @@ const SignInForm: React.FC = () => {
         <input
           type="password"
           name="password"
-          className="input-signup"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-2 mb-2"
           placeholder="Password"
           value={state.password}
           onChange={handleChange}
         />
-        <a href="#" className="a-signup">Forgot your password?</a>
-        <button type="submit" className="button-signup">Sign In</button>
-      </form> 
+        <a href="#" className="a-signup">
+          Forgot your password?
+        </a>
+        <button type="submit" className="button-signup">
+          Sign In
+        </button>
+      </form>
     </div>
   );
 };
