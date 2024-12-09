@@ -1,4 +1,3 @@
-// frontend/src/pages/HomePage.tsx
 import React, { useState } from "react";
 import Browser from "../components/Browser";
 import SearchBar from "../components/SearchBar";
@@ -6,6 +5,7 @@ import Header from "../components/Header";
 import searchResults from "../utils/TestFiles/testReult";
 import SearchResults from "./ResultsPage/searchResults";
 import HeaderForSearchResult from "../components/HeaderForSearchResult";
+import "../styles/other.scss"
 
 const HomePage: React.FC = () => {
   const [query, setQuery] = useState("");
@@ -15,17 +15,25 @@ const HomePage: React.FC = () => {
     setQuery(searchQuery);
     setShowResults(true);
   };
+
   return (
     <>
-      <div className="bg-slate-400 w-full h-100 flex flex-col">
+      <div className="bg-slate-400 w-full min-h-full flex flex-col">
         {!showResults && (
           <>
-            <Header></Header>
+            <Header />
             <div className="flex justify-center items-center">
               <div className="bg-slate-500 p-6 text-center lg:w-3/5 md:w-3/4 sm:w-5/6 tablet shadow-md rounded-lg mt-32">
-                <h1 className="text-slate-900 text-4xl font-bold mb-8">
-                  Web Search Engine
-                </h1>
+                <h1 className="typed-out text-9xl text-orange-600 inline">G</h1>
+                <h1 className="typed-out text-7xl text-green-600 inline">o</h1>
+                <h1 className="typed-out text-7xl text-red-900 inline">T</h1>
+                <h1 className="typed-out text-7xl text-yellow-600 inline">o</h1>
+                <h1 className="typed-out text-7xl text-yellow-100 inline">S</h1>
+                <h1 className="typed-out text-7xl text-teal-500 inline">e</h1>
+                <h5 className="typed-out text-7xl text-violet-800 inline">a</h5>
+                <h5 className="typed-out text-7xl text-pink-700 inline">r</h5>
+                <h5 className="typed-out text-7xl text-purple-300  inline">c</h5>
+                <h5 className="typed-out text-7xl text-blue-950 inline">h</h5>
                 <div className="p-4 mb-8">
                   <SearchBar onSearch={handleSearch} />
                 </div>
@@ -36,7 +44,7 @@ const HomePage: React.FC = () => {
         )}
         {showResults && (
           <>
-            <HeaderForSearchResult></HeaderForSearchResult>
+            <HeaderForSearchResult />
             <div>
               <SearchResults searchResults={searchResults} />
             </div>

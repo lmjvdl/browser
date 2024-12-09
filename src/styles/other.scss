@@ -1,0 +1,8 @@
+.typed-out{
+    overflow: hidden;
+    border-right: .15em solid transparent;
+    white-space: nowrap;
+    animation: 
+      typing 5s steps(20, end) forwards,
+      blink .8s infinite;
+}
