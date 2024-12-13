@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import Browser from "../components/Browser";
 import SearchBar from "../components/SearchBar";
 import Header from "../components/Header";
-import searchResults from "../utils/TestFiles/testReult";
 import SearchResults from "./ResultsPage/searchResults";
-import HeaderForSearchResult from "../components/HeaderForSearchResult";
 import "../styles/other.scss";
 import useResultQuery from "../components/useSearch";
+import SearchBarForHeader from "../components/searchBarForHeader";
 
 const HomePage: React.FC = () => {
   const [query, setQuery] = useState("");
@@ -16,7 +15,7 @@ const HomePage: React.FC = () => {
   return (
     <>
       <div className="bg-slate-400 w-full min-h-full flex flex-col">
-        {!showResults && (
+        {/* {!showResults && (
           <>
             <Header />
             <div className="flex justify-center items-center">
@@ -34,16 +33,15 @@ const HomePage: React.FC = () => {
                 </h5>
                 <h5 className="typed-out text-7xl text-blue-950 inline">h</h5>
                 <div className="p-4 mb-8">
-                  <SearchBar setInputs={setVariables}/>
+                  <SearchBarForHeader setInputs={setVariables}/>
                 </div>
                 <Browser />
               </div>
             </div>
           </>
-        )}
+        )} */}
         {showResults && (
           <>
-            <HeaderForSearchResult />
             <div>
               <SearchResults query={reportQuery} />
             </div>

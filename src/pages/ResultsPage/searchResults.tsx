@@ -30,12 +30,12 @@ export default function SearchResults({ query }: VisualizationProps) {
       <HeaderForSearchResult />
       <div className="flex justify-items-center items-center flex-col">
         <div>
-          <div className="text-3xl font-bold mb-4 mt-4 mx-auto flex justify-center items-center bg-slate-300 w-11/12 rounded-xl py-2">
+          {/* <div className="text-3xl font-bold mb-4 mt-4 mx-auto flex justify-center items-center bg-slate-300 w-11/12 rounded-xl py-2">
             <h1 className="text-5xl text-orange-600 inline">S</h1>
             <h1 className="text-blue-950 inline">earch</h1>
             <h5 className="text-5xl text-orange-600 inline">R</h5>
             <h5 className="text-blue-950 inline">esult</h5>
-          </div>
+          </div> */}
           <div className="mb-4 mt-4 mx-auto flex justify-center items-center w-11/12">
             <ul>
               {query.data?.refined?.results.map((result) => (
