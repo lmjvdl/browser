@@ -5,18 +5,11 @@ import HomePage from "./pages/HomePage";
 import Index from "./pages/LoginAndRegister/index";
 
 const App: React.FC = () => {
-  const handleLoginSubmit = () => {
-    console.log("Login or signup submitted");
-  };
-
   return (
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route
-          path="/login"
-          element={<Index />}
-        />
+        <Route path="/login" element={<Index />} />
       </Routes>
     </Router>
   );

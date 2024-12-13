@@ -15,6 +15,11 @@ class AllUrls extends Url {
     const apiPath = `${this.baseUrlPath}/auth/register`;
     return new URL(apiPath, this.origin);
   }
+
+  public get search() {
+    const apiPath = `${this.baseUrlPath}/search`
+    return new URL(apiPath, this.origin)
+  }
 }
 
 const allUrls = new AllUrls();

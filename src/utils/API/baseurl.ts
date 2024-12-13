@@ -1,6 +1,6 @@
-const IS_IN_DEVELOPMENT = import.meta.env.DEV;
+const IS_IN_DEVELOPMENT = true;
 
-const local  ='http://127.0.0.1:8000'
+const local  ='http://192.168.73.87:8000/'
 
 export default class Url {
   protected readonly origin: string;
@@ -11,5 +11,5 @@ export default class Url {
       : new URL(window.location.href).origin;
   }
 
-  protected baseUrlPath = "factory";
+  protected baseUrlPath = "";
 }

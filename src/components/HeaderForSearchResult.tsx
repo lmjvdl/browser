@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SearchBar from "./SearchBar";
+import useResultQuery from "./useSearch";
 
 const HeaderForSearchResult: React.FC = () => {
   const [dateState, setDateState] = useState(new Date());
-  const [query, setQuery] = useState("دانشگاه یزد");
-  const [showResults, setShowResults] = useState(true);
+  const { setVariables } = useResultQuery();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,10 +20,6 @@ const HeaderForSearchResult: React.FC = () => {
     navigate("/login");
   };
 
-  const handleSearch = (searchQuery: string) => {
-    setQuery(searchQuery);
-    setShowResults(true);
-  };
 
   return (
     <div className="flex flex-row bg-gray-800 w-full p-3">
@@ -52,7 +48,7 @@ const HeaderForSearchResult: React.FC = () => {
         </div>
       </div>
       <div className="flex-1 mr-28 mt-1">
-        <SearchBar onSearch={handleSearch}></SearchBar>
+        <SearchBar setInputs={setVariables}></SearchBar>
       </div>
       <div className="flex-2 pointer-events-auto justify-center items-center pr-3 pt-3">
         <button

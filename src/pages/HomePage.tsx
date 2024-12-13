@@ -5,16 +5,13 @@ import Header from "../components/Header";
 import searchResults from "../utils/TestFiles/testReult";
 import SearchResults from "./ResultsPage/searchResults";
 import HeaderForSearchResult from "../components/HeaderForSearchResult";
-import "../styles/other.scss"
+import "../styles/other.scss";
+import useResultQuery from "../components/useSearch";
 
 const HomePage: React.FC = () => {
   const [query, setQuery] = useState("");
   const [showResults, setShowResults] = useState(true);
-
-  const handleSearch = (searchQuery: string) => {
-    setQuery(searchQuery);
-    setShowResults(true);
-  };
+  const { reportQuery, setVariables } = useResultQuery();
 
   return (
     <>
@@ -32,10 +29,12 @@ const HomePage: React.FC = () => {
                 <h1 className="typed-out text-7xl text-teal-500 inline">e</h1>
                 <h5 className="typed-out text-7xl text-violet-800 inline">a</h5>
                 <h5 className="typed-out text-7xl text-pink-700 inline">r</h5>
-                <h5 className="typed-out text-7xl text-purple-300  inline">c</h5>
+                <h5 className="typed-out text-7xl text-purple-300  inline">
+                  c
+                </h5>
                 <h5 className="typed-out text-7xl text-blue-950 inline">h</h5>
                 <div className="p-4 mb-8">
-                  <SearchBar onSearch={handleSearch} />
+                  <SearchBar setInputs={setVariables}/>
                 </div>
                 <Browser />
               </div>
@@ -46,7 +45,7 @@ const HomePage: React.FC = () => {
           <>
             <HeaderForSearchResult />
             <div>
-              <SearchResults searchResults={searchResults} />
+              <SearchResults query={reportQuery} />
             </div>
           </>
         )}
