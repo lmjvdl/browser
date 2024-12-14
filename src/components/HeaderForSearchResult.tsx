@@ -77,7 +77,7 @@ const HeaderForSearchResult: React.FC = () => {
                 <h1 className="typed-out text-4xl text-yellow-500 inline">S</h1>
                 <h5 className="typed-out text-3xl text-blue-950 inline">earch</h5>
               </div>
-              <div className="mb-4 mt-3">
+              <div className="mb-4 mt-4">
               <SearchBar
                   onClick={() => console.log("Navigating...")}
                   show={showSearchBar}

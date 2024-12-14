@@ -1,7 +1,11 @@
 import React, { useState } from "react";
+import SearchBar from "../components/SearchBar";
+import Header from "../components/Header";
 import SearchResults from "./ResultsPage/searchResults";
+import "../styles/other.scss";
 import useResultQuery from "../components/useSearch";
 import "../styles/other.scss";
+import SearchBarForHeader from "../components/searchBarForHeader";
 
 const HomePage: React.FC = () => {
   const { reportQuery } = useResultQuery();
