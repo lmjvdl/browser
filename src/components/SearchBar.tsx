@@ -1,18 +1,23 @@
-// frontend/src/components/SearchBar.tsx
 import React from "react";
 import { SetVariablesType } from "./useSearch";
+import { useNavigate } from "react-router-dom";
 
 interface InputCenterProps {
   setInputs: SetVariablesType;
   show: boolean;
+  onClick?: () => void; // اضافه کردن prop onClick
 }
 
-export default function SearchBar({ setInputs, show }: InputCenterProps) {
+export default function SearchBar({ setInputs, show, onClick }: InputCenterProps) {
   const [querySearch, setQuery] = React.useState<string>("");
-  const [showRes, setShowRes] = React.useState<boolean>(true);
+  const [showRes, setShowRes] = React.useState<boolean>(show);
+  const navigate = useNavigate(); 
+
   const handleClick = () => {
     setShowRes(false);
+    if (onClick) onClick();
   };
+
   return (
     <>
       {showRes && (
@@ -23,6 +28,12 @@ export default function SearchBar({ setInputs, show }: InputCenterProps) {
               querySearch,
               page: 1,
             });
+        
+            if (querySearch.trim() !== "") {
+              navigate("/search");
+            } else {
+              console.log("Query is empty, staying on the current page.");
+            }
           }}
           className="max-w-md mx-auto">
           <label
@@ -40,9 +51,9 @@ export default function SearchBar({ setInputs, show }: InputCenterProps) {
                 viewBox="0 0 20 20">
                 <path
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
                 />
               </svg>

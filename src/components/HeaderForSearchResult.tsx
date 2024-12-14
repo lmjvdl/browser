@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import useResultQuery from "./useSearch";
-import Browser from "./Browser";
 import SearchBarForHeader from "./searchBarForHeader";
+import SearchBox from "./SearchBox";
 
 const HeaderForSearchResult: React.FC = () => {
   const [dateState, setDateState] = useState(new Date());
+  const [showSearchBar, setShowSearchBar] = useState(true);
   const { setVariables } = useResultQuery();
-  const showSearchBar = true;
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -19,10 +20,11 @@ const HeaderForSearchResult: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const handleNavigate = () => {
-    navigate("/login");
-  };
 
+  useEffect(() => {
+    navigate("/search");
+  }, []);
+  
 
   return (
     <>
@@ -57,36 +59,35 @@ const HeaderForSearchResult: React.FC = () => {
         <div className="flex-2 pointer-events-auto justify-center items-center pr-3 pt-3">
           <button
             type="button"
-            onClick={handleNavigate}
+            onClick={() => navigate("/login")}
             className="text-white end-2.5 ml-2 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             Sign up / Sign in
           </button>
         </div>
       </div>
-      { showSearchBar && (
+      {showSearchBar && (
         <>
-        <div className="flex justify-center items-center">
-          <div className="bg-slate-500 p-6 text-center lg:w-3/5 md:w-3/4 sm:w-5/6 tablet shadow-md rounded-lg mt-32">
-            <h1 className="typed-out text-9xl text-orange-600 inline">G</h1>
-            <h1 className="typed-out text-7xl text-green-600 inline">o</h1>
-            <h1 className="typed-out text-7xl text-red-900 inline">T</h1>
-            <h1 className="typed-out text-7xl text-yellow-600 inline">o</h1>
-            <h1 className="typed-out text-7xl text-yellow-100 inline">S</h1>
-            <h1 className="typed-out text-7xl text-teal-500 inline">e</h1>
-            <h5 className="typed-out text-7xl text-violet-800 inline">a</h5>
-            <h5 className="typed-out text-7xl text-pink-700 inline">r</h5>
-            <h5 className="typed-out text-7xl text-purple-300  inline">c</h5>
-            <h5 className="typed-out text-7xl text-blue-950 inline">h</h5>
-            <div className="p-4 mb-8">
-              <SearchBar show={showSearchBar} setInputs={setVariables} />
+          <SearchBox show={showSearchBar}>
+            <div className="bg-slate-500 text-center lg:w-3/5 md:w-3/4 sm:w-5/6 tablet shadow-md rounded-lg mt-7">
+              <div className="mt-3">
+                <h1 className="typed-out text-6xl text-yellow-500 inline">G</h1>
+                <h1 className="typed-out text-3xl text-blue-950 inline">o</h1>
+                <h1 className="typed-out text-4xl text-yellow-500 inline">T</h1>
+                <h1 className="typed-out text-3xl text-blue-950 inline">o</h1>
+                <h1 className="typed-out text-4xl text-yellow-500 inline">S</h1>
+                <h5 className="typed-out text-3xl text-blue-950 inline">earch</h5>
+              </div>
+              <div className="p-4 mb-8">
+              <SearchBar
+                  onClick={() => console.log("Navigating...")}
+                  show={showSearchBar}
+                  setInputs={setVariables}
+                />
+              </div>
             </div>
-            <Browser />
-          </div>
-        </div>
+          </SearchBox>
         </>
-      )
-
-      }
+      )}
     </>
   );
 };
