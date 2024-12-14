@@ -16,7 +16,7 @@ interface ReportOptions {
 
 export type ReportQueryType = UseQueryResult<
   Awaited<ReturnType<typeof resultQueryStrategy>> | null,
-  unknown | undefined
+  unknown
 >;
 export type SetVariablesType = React.Dispatch<
   React.SetStateAction<ReportInputs | null>
@@ -74,7 +74,7 @@ const finallySchemeRes = z.object({
   results,
   total: z.number(),
   page: z.number(),
-  size: z.number()
+  size: z.number(),
 });
 
 function sanitizer(rawData: unknown) {
