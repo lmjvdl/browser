@@ -75,6 +75,7 @@ const finallySchemeRes = z.object({
   total: z.number(),
   page: z.number(),
   size: z.number(),
+  time: z.number(),
 });
 
 function sanitizer(rawData: unknown) {

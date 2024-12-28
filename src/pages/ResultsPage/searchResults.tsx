@@ -9,11 +9,13 @@ interface VisualizationProps {
 
 export default function SearchResults({ query }: VisualizationProps) {
   const [activePage, setPage] = useState(query.data?.refined.page || 1);
+  const [time, setTime] = useState<number>(0);
   const { setVariables } = useResultQuery();
 
   useEffect(() => {
     if (query.data) {
       setPage(query.data.refined.page);
+      setTime(query.data.refined.time)
     }
   }, [query.data]);
 
@@ -30,6 +32,9 @@ export default function SearchResults({ query }: VisualizationProps) {
       <HeaderForSearchResult />
       <div className="flex justify-items-center items-center flex-col">
         <div>
+          <div className="text-slate-800 my-2">
+            time: {time}ms
+          </div>
           <div className="mb-4 mt-4 mx-auto flex justify-center items-center w-11/12">
             <ul>
               {query.data?.refined?.results.map((result) => (
