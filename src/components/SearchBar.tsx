@@ -8,15 +8,14 @@ interface InputCenterProps {
   onClick?: () => void; // اضافه کردن prop onClick
 }
 
-export default function SearchBar({ setInputs, show, onClick }: InputCenterProps) {
+export default function SearchBar({
+  setInputs,
+  show,
+  onClick,
+}: InputCenterProps) {
   const [querySearch, setQuery] = React.useState<string>("");
   const [showRes, setShowRes] = React.useState<boolean>(show);
-  const navigate = useNavigate(); 
-
-  const handleClick = () => {
-    setShowRes(false);
-    if (onClick) onClick();
-  };
+  const navigate = useNavigate();
 
   return (
     <>
@@ -28,7 +27,7 @@ export default function SearchBar({ setInputs, show, onClick }: InputCenterProps
               querySearch,
               page: 1,
             });
-        
+            setShowRes(false)
             if (querySearch.trim() !== "") {
               navigate("/search");
             } else {
@@ -68,7 +67,6 @@ export default function SearchBar({ setInputs, show, onClick }: InputCenterProps
               required
             />
             <button
-              onClick={handleClick}
               type="submit"
               className="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
               Search
