@@ -25,6 +25,11 @@ class AllUrls extends Url {
     const apiPath = `${this.baseUrlPath}/suggestions`
     return new URL(apiPath, this.origin)
   }
+  
+  public get histories() {
+    const apiPath = `${this.baseUrlPath}/histories`
+    return new URL(apiPath, this.origin)
+  }
 }
 
 const allUrls = new AllUrls();

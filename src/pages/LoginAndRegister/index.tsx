@@ -3,10 +3,12 @@ import { useNavigate } from "react-router-dom";
 import "../../styles/login.scss";
 import SignInForm from "./signIn/signIn";
 import SignUpForm from "./signUp/SignUp";
+import useLoginQuery from "./signIn/useSignIn"; 
 
 const Index: React.FC = () => {
   const [type, setType] = useState<"signIn" | "signUp">("signIn");
   const navigate = useNavigate();
+  const { setVariables } = useLoginQuery();
 
   const handleOnClick = (text: "signIn" | "signUp") => {
     if (text !== type) {
@@ -40,7 +42,7 @@ const Index: React.FC = () => {
 
         <div className={containerClass} id="container">
           <SignUpForm />
-          <SignInForm />
+          <SignInForm setInputs={setVariables}></SignInForm>
           <div className="overlay-container">
             <div className="overlay">
               <div className="overlay-panel overlay-left">

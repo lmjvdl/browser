@@ -41,7 +41,9 @@ const HeaderForSearchResult: React.FC = () => {
                 clipRule="evenodd"></path>
             </svg>
           </div>
+
         </div>
+        <div className="flex-2 dark:text-white pointer-events-auto mt-4 ml-4 justify-end items-center text-xl">{localStorage.getItem("username")}</div>
         <div className="flex-2 pointer-events-auto justify-end items-start ml-8">
           <div className="mt-4 text-3xl font-normal tracking-tight leading-none text-white-900 dark:text-white">
             {dateState.toLocaleString("en-US", {

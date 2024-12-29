@@ -6,6 +6,7 @@ import { errorHandler } from "../../utils/dataFetching/queryClient";
 import authUrls from "../API/URLs";
 import AuthResponseSanitizer from "../../utils/auth/AuthResponseSanitizer";
 
+
 export default function useLogin() {
 //   const queryClient = useQueryClient();
   const navigate = useNavigate();
@@ -20,10 +21,10 @@ export default function useLogin() {
       }).then(AuthResponseSanitizer),
       onSuccess: (serverResponse) => {
         updateUser(serverResponse);
+        navigate("/search");
         //   queryClient.setQueryData(allQueryKeys.refreshToken, {
     //     access: serverResponse.accessToken,
     //   });
-      navigate("/search");
     },
     onError: () => {
       const prettyError = new Error("نام کاربری یا رمز عبور شما نامعتبر است.");

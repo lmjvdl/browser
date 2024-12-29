@@ -1,19 +1,18 @@
 import React from "react";
 import { UseQueryResult, useQuery } from "@tanstack/react-query";
 import { z } from "zod";
-import fetchWithError from "../utils/dataFetching/fetchWithError";
-import AllUrls from "../utils/API/URLs";
+import fetchWithError from "../../../utils/dataFetching/fetchWithError";
+import AllUrls from "../../../utils/API/URLs";
+import { useNavigate } from "react-router-dom";
 
 interface ReportInputs {
-  querySearch: string;
-  page: number;
-  user_id?: string;
+  username: string;
+  password: string;
 }
 
 interface ReportOptions {
-  querySearch: string;
-  page: number;
-  user_id?: string;
+  username: string;
+  password: string;
 }
 
 export type ReportQueryType = UseQueryResult<
@@ -24,14 +23,22 @@ export type SetVariablesType = React.Dispatch<
   React.SetStateAction<ReportInputs | null>
 >;
 
-export default function useResultQuery() {
+export default function useLoginQuery() {
   const [variables, setVariables] = React.useState<ReportInputs | null>(null);
+  const navigate = useNavigate();
   const reportQuery = useQuery({
     enabled: !!variables,
-    queryKey: ["SEARCH", "QUERY"],
+    queryKey: ["LOGIN", "AUTH", "SIGN_IN"],
     queryFn: ({ signal }) =>
       variables && resultQueryStrategy(variables, { signal }),
     onSettled: () => setVariables(null),
+    onSuccess: (data) => {
+      navigate("/search");
+        if (data?.refined?.user?.id) {
+          localStorage.setItem("userId", data.refined.user.id.toString());
+          localStorage.setItem("username", data.refined.user.username)
+        }
+    },
     retry: 3,
     retryDelay: 0,
   });
@@ -50,39 +57,28 @@ async function resultQueryStrategy(inputs: ReportInputs, options: RequestInit) {
 
 function preprocessor(options: ReportInputs) {
   const refinedOptions = {
-    querySearch: options.querySearch,
-    page: options.page,
-    user_id: options.user_id
+    password: options.password,
+    username: options.username,
   };
   return refinedOptions;
 }
 
 function urlMaker(refinedOptions: ReportOptions) {
-  const baseUrl = new URL(AllUrls.search);
-  baseUrl.searchParams.append("query", refinedOptions.querySearch);
-  baseUrl.searchParams.append("page", refinedOptions.page.toString());
-  if(refinedOptions.user_id) {
-    baseUrl.searchParams.append("user_id", refinedOptions.user_id);
-  }
+  const baseUrl = new URL(AllUrls.login);
+  baseUrl.searchParams.append("username", refinedOptions.username);
+  baseUrl.searchParams.append("password", refinedOptions.password);
   return baseUrl;
 }
 
-const results = z
+const user = z
   .object({
-    id: z.string(),
-    url: z.string(),
-    title: z.string(),
-    body: z.string(),
+    id: z.number(),
+    username: z.string(),
+    email: z.string()
   })
-  .array();
 
 const finallySchemeRes = z.object({
-  results,
-  total: z.number(),
-  page: z.number(),
-  size: z.number(),
-  time: z.number(),
-  search: z.string()
+  user,
 });
 
 function sanitizer(rawData: unknown) {
