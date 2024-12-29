@@ -4,11 +4,13 @@ import "../../styles/login.scss";
 import SignInForm from "./signIn/signIn";
 import SignUpForm from "./signUp/SignUp";
 import useLoginQuery from "./signIn/useSignIn"; 
+import useSignUp from "./signUp/useSignUp";
 
 const Index: React.FC = () => {
   const [type, setType] = useState<"signIn" | "signUp">("signIn");
   const navigate = useNavigate();
   const { setVariables } = useLoginQuery();
+  const { SetVariables } = useSignUp();
 
   const handleOnClick = (text: "signIn" | "signUp") => {
     if (text !== type) {
@@ -41,7 +43,7 @@ const Index: React.FC = () => {
         </div>
 
         <div className={containerClass} id="container">
-          <SignUpForm />
+          <SignUpForm setInputs={SetVariables}></SignUpForm>
           <SignInForm setInputs={setVariables}></SignInForm>
           <div className="overlay-container">
             <div className="overlay">
