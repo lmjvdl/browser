@@ -1,6 +1,6 @@
 const IS_IN_DEVELOPMENT = true;
 
-const local  ='http://192.168.73.87:8000/'
+const local  ='http://192.168.147.87:8000/'
 
 export default class Url {
   protected readonly origin: string;

@@ -9,13 +9,17 @@ interface VisualizationProps {
 
 export default function SearchResults({ query }: VisualizationProps) {
   const [activePage, setPage] = useState(query.data?.refined.page || 1);
+  const [total, setTotal] = useState<number>(0);
   const [time, setTime] = useState<number>(0);
+  const [placeHolder, setPlaceHolder] = useState<string>("");
   const { setVariables } = useResultQuery();
 
   useEffect(() => {
     if (query.data) {
       setPage(query.data.refined.page);
       setTime(query.data.refined.time)
+      setTotal(query.data?.refined.total - 1000)
+      setPlaceHolder(query.data?.refined.search)
     }
   }, [query.data]);
 
@@ -29,12 +33,19 @@ export default function SearchResults({ query }: VisualizationProps) {
 
   return (
     <>
+
       <HeaderForSearchResult />
       <div className="flex justify-items-center items-center flex-col">
         <div>
-          <div className="text-slate-800 my-2">
-            time: {time}ms
-          </div>
+          { (time !== 0) && (
+            <>
+              <div className="w-11/12 bg-slate-700 text-slate-50 text-2xl py-3 rounded-lg mb-4 mt-4 mx-auto flex justify-center items-center" >
+              <img className="inline pr-3" width="60" height="60" src="https://img.icons8.com/officel/80/timer.png" alt="timer"/>
+                <span className="text-gray-300 text-xl px-2"><span className="text-gray-50 text-2xl px-2">{total}</span> Results for<span className="text-yellow-300 text-2xl px-2">"{query.data?.options.querySearch}"</span> <span></span> in</span> {time}ms
+              </div>
+            </>
+          )
+          }
           <div className="mb-4 mt-4 mx-auto flex justify-center items-center w-11/12">
             <ul>
               {query.data?.refined?.results.map((result) => (
@@ -64,7 +75,9 @@ export default function SearchResults({ query }: VisualizationProps) {
                         d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"></path>
                     </svg>
                     <span className="text-2xl ml-3 text-gray-800">
-                      {result.title}
+                      <a href={result.url} className="hover:underline">
+                        {result.title}
+                      </a>
                     </span>
                   </div>
                   <a
@@ -74,7 +87,7 @@ export default function SearchResults({ query }: VisualizationProps) {
                   </a>
                   <p
                     dir="rtl"
-                    className="text-gray-900 inline"
+                    className="text-gray-900 inline text-base"
                     dangerouslySetInnerHTML={{
                       __html: processStrongTags(result.body),
                     }}></p>
@@ -85,7 +98,7 @@ export default function SearchResults({ query }: VisualizationProps) {
         </div>
         <div>
           <Pagination
-            total={query.data?.refined?.total || 0}
+            total={total/5 || 0}
             value={activePage}
             onChange={handlePageChange}
             className="justify-center content-center flex my-10"
@@ -99,7 +112,7 @@ export default function SearchResults({ query }: VisualizationProps) {
 function processStrongTags(text: string): string {
   return text.replace(
     /<strong>(.*?)<\/strong>/g,
-    '<span class="font-bold">$1</span>'
+    '<span class="font-bold text-base">$1</span>'
   );
 }
 

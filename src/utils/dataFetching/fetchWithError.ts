@@ -1,3 +1,5 @@
+import { notifications } from "@mantine/notifications";
+
 export default async function fetchWithError(
   url: string | URL,
   options: RequestInit = {}
@@ -11,8 +13,11 @@ export default async function fetchWithError(
     const result = await response.json();
     return result;
   } catch (err) {
-    throw new Error("درخواست به سرور با مشکل مواجه شد.", {
-      cause: "خطای سرور",
+    notifications.show({
+      title: "Error",
+      message: "Request error",
+      autoClose: 5_000,
+      color: "red",
     });
   }
 }

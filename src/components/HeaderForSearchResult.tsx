@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import useResultQuery from "./useSearch";
 import SearchBarForHeader from "./searchBarForHeader";
@@ -10,7 +10,6 @@ const HeaderForSearchResult: React.FC = () => {
   const [showSearchBar, setShowSearchBar] = useState(true);
   const { setVariables } = useResultQuery();
   const navigate = useNavigate();
-  const location = useLocation();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -79,7 +78,6 @@ const HeaderForSearchResult: React.FC = () => {
               </div>
               <div className="mb-4 mt-4">
               <SearchBar
-                  onClick={() => console.log("Navigating...")}
                   show={showSearchBar}
                   setInputs={setVariables}
                 />

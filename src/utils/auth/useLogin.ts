@@ -18,9 +18,9 @@ export default function useLogin() {
         method: "POST",
         body: JSON.stringify(entry),
       }).then(AuthResponseSanitizer),
-    onSuccess: (serverResponse) => {
-      updateUser(serverResponse);
-    //   queryClient.setQueryData(allQueryKeys.refreshToken, {
+      onSuccess: (serverResponse) => {
+        updateUser(serverResponse);
+        //   queryClient.setQueryData(allQueryKeys.refreshToken, {
     //     access: serverResponse.accessToken,
     //   });
       navigate("/search");
